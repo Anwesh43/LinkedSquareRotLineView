@@ -212,4 +212,13 @@ class SquareRotBlockView(ctx : Context) : View(ctx) {
             }
         }
     }
+
+    companion object {
+
+        fun create(activity : Activity) : SquareRotBlockView {
+            val view : SquareRotBlockView = SquareRotBlockView(activity)
+            activity.setContentView(view)
+            return view
+        }
+    }
 }
