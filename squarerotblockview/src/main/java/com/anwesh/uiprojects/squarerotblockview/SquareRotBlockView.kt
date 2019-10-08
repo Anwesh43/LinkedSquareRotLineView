@@ -28,7 +28,7 @@ fun Float.maxScale(i : Int, n : Int) : Float = Math.max(0f, this - i * n.inverse
 fun Float.divideScale(i : Int, n : Int) : Float = Math.min(n.inverse(), maxScale(i, n)) * n
 
 fun Canvas.drawSquareLine(i : Int, size : Float, scale : Float, paint : Paint) {
-    val sqSize : Float = size / squareSizeFactor
+    val sqSize : Float = (size / squareSizeFactor) * (i * scale.divideScale(0, parts) + (1 - i))
     save()
     rotate(-90f * scale.divideScale(0, parts) * i)
     drawLine(0f, 0f, size, 0f, paint)
