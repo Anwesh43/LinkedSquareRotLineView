@@ -189,4 +189,26 @@ class SquareRotBlockView(ctx : Context) : View(ctx) {
             curr.startUpdating(cb)
         }
     }
+
+    data class Renderer(var view : SquareRotBlockView) {
+
+        private val animator : Animator = Animator(view)
+        private val srb : SquareRotBlock = SquareRotBlock(0)
+
+        fun render(canvas : Canvas, paint : Paint) {
+            canvas.drawColor(backColor)
+            srb.draw(canvas, paint)
+            animator.animate {
+                srb.update {
+                    animator.stop()
+                }
+            }
+        }
+
+        fun handleTap() {
+            srb.startUpdating {
+                animator.start()
+            }
+        }
+    }
 }
